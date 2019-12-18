@@ -1,12 +1,7 @@
 
 #!/usr/bin/python
 '''
-Description  		:	python library for signal processing
-Date created 		:   22/08/17
-Date modified 		:  	10/05/19
-
-
-
+Python library for signal processing
 The script requires the following python libraries:
  
  * numpy
@@ -41,16 +36,16 @@ class sigLib():
 
 
 	def rectify(self, y, type='full-wave'):
-		'''rectify some signal.
+		'''rectify signal.
 		
 		Arguments:
 		---------
-		y 		: 	numpy array with signal
+		y 	:	numpy array with signal
 		type	:	type of rectifier (full-wave, half-wave)
 
 		Return:
 		---------
-		yr 		: 	array with rectified signal
+		yr 	:	array with rectified signal
 		'''
 
 		if type=='full-wave':
@@ -66,11 +61,11 @@ class sigLib():
 
 		Arguments:
 		---------
-		y 		: 	numpy array with signal
+		y 	:	numpy array with signal
 		
 		Return:
 		---------
-		yc 		:	numpy with ones at zero crossing points
+		yc 	:	numpy with ones at zero crossing points
 		
 		'''
 		yc = np.zeros(len(y))
@@ -86,16 +81,16 @@ class sigLib():
 
 		Arguments:
 		--------- 
-		y 		:	1D numpy array with signal to filter
+		y 	:	1D numpy array with signal to filter
 		cutfreq :	high cutoff frequency (pi rad/sample or half-cycles/sample)
 		order	:	filter order
 		btype	: 	type of filter (lowpass, highpass, bandpass, bandstop)
 		hzf     : 	cutoff frequency in Hz	
-		sf 		: 	sampling frequency
+		sf 	: 	sampling frequency
 
 		Return:
 		---------
-		yf 		: 	1D numpy array with filtered signal
+		yf 	: 	1D numpy array with filtered signal
 		'''
 
 		if (hzf!=None) & (sf!=None):
@@ -149,7 +144,7 @@ class sigLib():
 		
 		Arguments:
 		---------
-		y 		:	numpy array with signal
+		y 	:	numpy array with signal
 		Return:
 		---------
 		indx 	:	indexes for local minima'''
@@ -164,7 +159,7 @@ class sigLib():
 		
 		Arguments:
 		---------
-		y 		:	numpy array with signal
+		y 	:	numpy array with signal
 		Return:
 		---------
 		indx 	:	indexes for local maxima'''
@@ -179,7 +174,7 @@ class sigLib():
 		
 		Arguments:
 		---------
-		df 		:	pandas dataframe
+		df 	:	pandas dataframe
 		columns	:	column to normalize
 
 		Return:
@@ -197,8 +192,8 @@ class sigLib():
 
 		Arguments:
 		----------
-		y 		:	1D numpy array with signal
-		h		: 	time lag in samples
+		y 	:	1D numpy array with signal
+		h	: 	time lag in samples
 		method 	: 	method to be used (1; 2)
 
 		Returns: 	
@@ -227,10 +222,10 @@ class sigLib():
 
 		Arguments:
 		----------
-		y 			: 	1D numpy with signal
-		h 			: 	time lag in samples
+		y 		: 	1D numpy with signal
+		h 		: 	time lag in samples
 		method		: 	method to be used (1; 2) 
-						method 1 corresponds to statsmodels.tsa.stattools.acf
+					method 1 corresponds to statsmodels.tsa.stattools.acf
 		Return:
 		----------
 		out 		: 	1D numpy array with AC'''
@@ -243,7 +238,7 @@ class sigLib():
 
 		Arguments:
 		----------
-		y 		: 	1D numpy array with signal
+		y 	:	1D numpy array with signal
 		hMad 	: 	maximum time lab in samples
 
 		Return:
@@ -275,7 +270,7 @@ class sigLib():
 
 		Arguments:
 		----------
-		y 		:	numpy array with signal
+		y 	:	numpy array with signal
 		hMax	:	max lag
 		hMin 	: 	min lag
 		method 	: 	method to be used (1; 2)
@@ -286,7 +281,7 @@ class sigLib():
 
 		Return:
 		----------
-		y1 		: 	1D numpy with with AC (acor), ACV (acov) or PAC (pacor)'''
+		y1 	: 	1D numpy with with AC (acor), ACV (acov) or PAC (pacor)'''
 
 		plt.figure()
 		out=[]
@@ -352,7 +347,7 @@ class sigLib():
 
 		Arguments:
 		---------
-		y 		: 	1D numpy array with the signal
+		y 	: 	1D numpy array with the signal
 		hMax 	: 	maximum lag
 		method	: 	method to be used (1; 2)
 
@@ -388,14 +383,14 @@ class sigLib():
 		
 		Arguments:
 		---------
-		y 		: 	1D numpy array with signal
+		y 	: 	1D numpy array with signal
 		hMax 	: 	maximum lag
 		method	:	method to be used (1; 2)
 		plot 	: 	boolean for plotting (default = False)
 		
 		Return:
 		---------
-		y1 		:	1D numpy with power spectrum'''
+		y1 	:	1D numpy with power spectrum'''
 
 		
 		freq = np.arange(0,.5,.01) #range of freq
@@ -423,13 +418,13 @@ class sigLib():
 
 		Arguments:
 		---------
-		mn 		: 	mean for signal
-		sd 		: 	standard deviation for signal
+		mn 	: 	mean for signal
+		sd 	: 	standard deviation for signal
 		samples :	number of samples
 		plot 	: 	boolean for plotting (default = True)
 		Return:
 		---------
-		y 		: 	numpy array with white noise'''
+		y 	: 	numpy array with white noise'''
 
 		np.random.seed(1)
 		y = np.random.normal(mn, sd, size=samples)
@@ -446,13 +441,13 @@ class sigLib():
 
 		Arguments:
 		---------
-		mn 		: 	mean for signal
-		sd 		: 	standard deviation for signal
+		mn 	: 	mean for signal
+		sd 	: 	standard deviation for signal
 		samples :	number of samples
 		plot 	: 	boolean for plotting (default = True)
 		Return:
 		---------
-		y 		: 	numpy array with white noise'''
+		y 	: 	numpy array with white noise'''
 
 		np.random.seed(1)
 		y = w = np.random.normal(size=samples)
