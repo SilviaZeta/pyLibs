@@ -1,9 +1,6 @@
 #!/usr/bin/python
 '''
-Description  		:	python library for image processing
-Date created 		:   03/05/19
-Date modified 		:  	10/05/19
-
+Python library for image processing.
 
 The script requires the following python libraries:
  * numpy
@@ -19,7 +16,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image
 import scipy
-#import seaborn as sns
 
 
 
@@ -30,13 +26,13 @@ class imgLib():
 
 		Arguments:
 		---------
-		img 		:	image imported with PIL Image.open 
-		sigma		:	standard deviation
-		show  		: 	boolean for showing plot
+		img 	:	image imported with PIL Image.open 
+		sigma	:	standard deviation
+		show  	: 	boolean for showing plot
 
 		Return:
 		---------
-		img_filt	:	image filtered
+		img_filt:	image filtered
 		'''
 		from scipy import ndimage
 		im_filt = scipy.ndimage.gaussian_filter(img, sigma=sigma, truncate=2.0)
@@ -59,7 +55,7 @@ class imgLib():
 		img 		:	input image (imported with PIL Image.open)
 		colour_old	:	vector with RGB values for old colour
 		colour_new	:	vector with RGB values for new colour
-		show  		: 	boolean for showing plot
+		show	  	: 	boolean for showing plot
 
 		Return:
 		---------
@@ -107,13 +103,13 @@ class imgLib():
 
 		Arguments:
 		---------
-		img 		:	input image (imported with PIL Image.open)
-		norm 		:	type of normalization ('01'=minMax, 'z'=meanStd)
-		axis		: 	axis for normalization (0=x, 1=y)
-		show  		: 	boolean for showing plot
+		img 	:	input image (imported with PIL Image.open)
+		norm 	:	type of normalization ('01'=minMax, 'z'=meanStd)
+		axis	: 	axis for normalization (0=x, 1=y)
+		show  	: 	boolean for showing plot
 		Return:
 		---------
-		img_norm 	:	normalized image
+		img_norm:	normalized image
 		'''
 
 		if not isinstance(img, np.ndarray):
@@ -147,26 +143,26 @@ class imgLib():
 
 		Arguments:
 		---------
-		img 		:	input image (imported with PIL Image.open)
-		sigma		: 	standard deviation for Gaussian filter
-		norm 		:	type of normalization ('01'=minMax, 'z'=meanStd)
-		show  		: 	boolean for showing plots
+		img 	:	input image (imported with PIL Image.open)
+		sigma	: 	standard deviation for Gaussian filter
+		norm 	:	type of normalization ('01'=minMax, 'z'=meanStd)
+		show  	: 	boolean for showing plots
 		
 		Return:
 		---------
-		img3 		:	output image: AOI map
+		img3 	:	output image: AOI map
 		'''
 
-		#Convert image from RGB to grey scale
+		#convert image from RGB to grey scale
 		img1 = self.img_RBG_to_greyScale(img, show=show[0])
 
-		#Apply Gaussian filter 
+		#apply Gaussian filter 
 		img2 = self.apply_Gauss_filter(img1, sigma=sigma, show=show[1])
 
-		#Invert values for object-background from max-min to min-max
+		#invert values for object-background from max-min to min-max
 		img2 = abs(img2-img2.max())
 
-		#Normalize the images
+		#normalize the images
 		img3 = self.img_norm(img2, norm, axis=(0,1), show=show[2])
 
 		return img3
@@ -199,17 +195,17 @@ class imgLib():
 				stjx=stj+j;
 				im[i,j]= np.sqrt(np.power(stix,2)+np.power(stjx,2))
 
-		#Invert values: center-periphery = max-min
+		#invert values: center-periphery = max-min
 		#im = abs(im-im.max())
 		
-		#Normalize the image
+		#normalize the image
 		img1 = self.img_norm(im, norm, axis=(0,1), show=show)
 
 		return img1
 
 
 	def show_map(self, map):
-		'''Plot map or image in grescale'''
+		'''plot map or image in grescale'''
 		plt.imshow(map,cmap='gray')
 		plt.show()
 
