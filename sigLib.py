@@ -5,24 +5,24 @@ Python library for signal processing
 The script requires the following python libraries:
  
  * numpy
- * scipy
  * pandas
+  * scipy
  * random
  * matplotlib
- * statsmodels
  * seaborn
+ * statsmodels
 
 '''
 
 
 import os
-import random
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-#import pylab as pyl
-import seaborn as sns
 import scipy
+import random
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 #package statsmodels for ARMA
 import statsmodels.formula.api as smf
@@ -31,10 +31,7 @@ import statsmodels.api as sm
 
 
 class sigLib():
-
-
-
-
+	
 	def rectify(self, y, type='full-wave'):
 		'''rectify signal.
 		
@@ -497,7 +494,7 @@ class sigLib():
 
 		Return:
 		---------
-		y 		: 	ARMA sample'''
+		y 	: 	ARMA sample'''
 
 		# 1D numpy arrays with coeff ready for filtering
 		alphas = np.r_[1, alphas]	
@@ -516,7 +513,7 @@ class sigLib():
 
 
 	def filter_ARMA(self, y, alphas, betas, plotSig=False, plotAutocor=False, iSac=None, iEac=None, hMax=30, hMin=0):
-		'''Filter signal based on coefficient found by fitting the an autoregression moving average (ARMA) model
+		'''filter signal based on coefficient found by fitting the an autoregression moving average (ARMA) model
 
 		Arguments
 		---------
@@ -834,7 +831,7 @@ class sigLib():
 
 		Returns:
 		----------
-		y1			: 	1D numpy array of length = len(df) with ones at where signal is min'''
+		y1		: 	1D numpy array of length = len(df) with ones at where signal is min'''
 
 		# detect
 		df = df.copy()
